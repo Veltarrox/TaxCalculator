@@ -1,8 +1,11 @@
+from typing import Union
+
 from TaxCalculators.DefaultTaxCalculator.DefaultConstants import *
-from TaxCalculators.FormattingVersions.FormattingVersions import round_to_whole_number, round_to_two_trailing_zeroes
+from TaxCalculators.ITaxCalculator.ITaxCalculator import ITaxCalculator
+from TaxCalculators.TaxPrinter.TaxPrinter import TaxPrinter
 
 
-class DefaultTaxCalculator:
+class DefaultTaxCalculator(ITaxCalculator): # noqa
     _base_income = 0
     _social_security = 0
     _social_security_health = 0
@@ -22,12 +25,84 @@ class DefaultTaxCalculator:
 
     def __init__(self, base_income):
         self._base_income = base_income
+        self._tax_printer = TaxPrinter(self)
 
-    def calculate_taxes(self):
-        self._calculate_results()
-        self._print_results()
+    @property
+    def contract_type(self) -> Union[None, str]:
+        return None
 
-    def _calculate_results(self):
+    @property
+    def base_income(self):
+        return self._base_income
+
+    @property
+    def social_security(self):
+        return self._social_security
+
+    @property
+    def social_security_health(self):
+        return self._social_security_health
+
+    @property
+    def social_security_sickness(self):
+        return self._social_security_sickness
+
+    @property
+    def income_basis_for_health_social_security(self):
+        return self._income_basis_for_health_social_security
+
+    @property
+    def health_tax_1(self):
+        return self._health_tax_1
+
+    @property
+    def health_tax_2(self):
+        return self._health_tax_2
+
+    @property
+    def deductible_expenses(self):
+        return self._deductible_expenses
+
+    @property
+    def income_basis_for_advance_tax(self):
+        return self._income_basis_for_advance_tax
+
+    @property
+    def income_basis_for_advance_tax_rounded(self):
+        return self._income_basis_for_advance_tax_rounded
+
+    @property
+    def advance_tax_basis(self):
+        return self._advance_tax_basis
+
+    @property
+    def tax_free_income(self):
+        return self._tax_free_income
+
+    @property
+    def advance_tax_without_free_income(self):
+        return self._advance_tax_without_free_income
+
+    @property
+    def advance_tax(self):
+        return self._advance_tax
+
+    @property
+    def advance_tax_rounded(self):
+        return self._advance_tax_rounded
+
+    @property
+    def net_income(self):
+        return self._net_income
+
+    def print_results(self):
+        self._tax_printer.print()
+
+    def calculate_taxes(self) -> None:
+        """
+        Calculate all taxes
+        :return: None
+        """
         self._calculate_social_security_tax()
         self._calculate_social_security_health_tax()
         self._calculate_social_security_sickness_tax()
@@ -44,113 +119,110 @@ class DefaultTaxCalculator:
         self._calculate_advance_tax_without_free_income()
         self._calculate_net_income()
 
-    def _print_results(self):
-        self._print_contract_type()
-        self._print_base_income()
-        self._print_social_security_tax()
-        self._print_health_social_security_tax()
-        self._print_sickness_social_security_tax()
-        self._print_income_basis_for_health_social_security()
-        self._print_health_taxes()
-        self._print_deductible_expenses()
-        self._print_income_basis_for_advance_tax()
-        self._print_advance_tax_basis()
-        self._print_tax_free_income()
-        self._print_advance_tax_without_free_income()
-        self._print_advance_tax()
-        self._print_net_income()
-
-    def _calculate_social_security_tax(self):
-        self._social_security = self._base_income * SOCIAL_SECURITY_TAX_RATE
+    def _calculate_social_security_tax(self) -> None:
+        """
+        Calculate social security tax
+        :return: None
+        """
+        self._social_security = self._base_income * TaxRates.SOCIAL_SECURITY.value
 
     def _calculate_social_security_health_tax(self):
-        self._social_security_health = self._base_income * SOCIAL_SECURITY_HEALTH_TAX_RATE
+        """
+        Calculate social security health tax
+        :return: None
+        """
+        self._social_security_health = self._base_income * TaxRates.SOCIAL_SECURITY_HEALTH.value
 
     def _calculate_social_security_sickness_tax(self):
-        self._social_security_sickness = self._base_income * SOCIAL_SECURITY_SICKNESS_TAX_RATE
+        """
+        Calculate social security sickness tax
+        :return: None
+        """
+        self._social_security_sickness = self._base_income * TaxRates.SOCIAL_SECURITY_SICKNESS.value
 
     def _calculate_income_basis_for_health_social_security(self):
+        """
+        Calculate income basis for health social security
+        :return: None
+        """
         self._income_basis_for_health_social_security = self._base_income - self._social_security - \
                                                         self._social_security_health - self._social_security_sickness
 
     def _calculate_health_tax_1(self):
-        self._health_tax_1 = self._income_basis_for_health_social_security * HEALTH_TAX_1_RATE
+        """
+        Calculate health tax_1
+        :return: None
+        """
+        self._health_tax_1 = self._income_basis_for_health_social_security * TaxRates.HEALTH_1.value
 
     def _calculate_health_tax_2(self):
-        self._health_tax_2 = self._income_basis_for_health_social_security * HEALTH_TAX_2_RATE
+        """
+        Calculate health tax_2
+        :return: None
+        """
+        self._health_tax_2 = self._income_basis_for_health_social_security * TaxRates.HEALTH_2.value
 
     def _calculate_tax_free_income(self):
-        self._tax_free_income = TAX_FREE_INCOME
+        """
+        Calculate tax free income
+        :return: None
+        """
+        self._tax_free_income = TaxValues.TAX_FREE_INCOME.value
 
     def _calculate_deductible_expenses(self):
-        self._deductible_expenses = DEDUCTIBLE_EXPENSES
+        """
+        Calculate deductible expenses
+        :return: None
+        """
+        self._deductible_expenses = TaxValues.DEDUCTIBLE_EXPENSES.value
 
     def _calculate_income_basis_for_advance_tax(self):
+        """
+        Calculate income basis for advance tax
+        :return: None
+        """
         self._income_basis_for_advance_tax = self._income_basis_for_health_social_security - self._deductible_expenses
 
     def _calculate_income_basis_for_advance_tax_rounded(self):
-        self._income_basis_for_advance_tax_rounded = float(round_to_whole_number(self._income_basis_for_advance_tax))
+        """
+        Calculate income basis for advance tax rounded
+        :return: None
+        """
+        self._income_basis_for_advance_tax_rounded = float(round(self._income_basis_for_advance_tax, 0))
 
     def _calculate_advance_tax_basis(self):
-        self._advance_tax_basis = self._income_basis_for_advance_tax_rounded * ADVANCE_TAX_RATE
+        """
+        Calculate advance tax basis
+        :return: None
+        """
+        self._advance_tax_basis = self._income_basis_for_advance_tax_rounded * TaxRates.ADVANCE.value
 
     def _calculate_advance_tax(self):
+        """
+        Calculate advance tax
+        :return: None
+        """
         self._advance_tax = self._advance_tax_basis - self._health_tax_2 - self._tax_free_income
 
     def _calculate_advance_tax_rounded(self):
-        self._advance_tax_rounded = float(round_to_whole_number(self._advance_tax))
+        """
+        Calculate advance tax rounded
+        :return: None
+        """
+        self._advance_tax_rounded = float(round(self._advance_tax, 0))
 
     def _calculate_advance_tax_without_free_income(self):
+        """
+        Calculate advance tax without free income
+        :return: None
+        """
         self._advance_tax_without_free_income = self._advance_tax_basis - self._tax_free_income
 
     def _calculate_net_income(self):
+        """
+        Calculate net income
+        :return: None
+        """
         self._net_income = self._base_income - (self._social_security + self._social_security_health +
                                                 self._social_security_sickness + self._health_tax_1 +
                                                 self._advance_tax_rounded)
-
-    def _print_contract_type(self):
-        pass
-
-    def _print_base_income(self):
-        print("Base Income ", self._base_income)
-
-    def _print_social_security_tax(self):
-        print("Social security tax: " + round_to_two_trailing_zeroes(self._social_security))
-
-    def _print_health_social_security_tax(self):
-        print("Health social security tax: " + round_to_two_trailing_zeroes(self._social_security_health))
-
-    def _print_sickness_social_security_tax(self):
-        print("Sickness social security tax: " + round_to_two_trailing_zeroes(self._social_security_sickness))
-
-    def _print_income_basis_for_health_social_security(self):
-        print("Income basis for health social security tax: ", self._income_basis_for_health_social_security)
-
-    def _print_health_taxes(self):
-        print("Health social security tax: 9% = " + round_to_two_trailing_zeroes(self._health_tax_1) + " 7,75% = " +
-              round_to_two_trailing_zeroes(self._health_tax_2))
-
-    def _print_deductible_expenses(self):
-        print("Tax deductible expenses: ", self._deductible_expenses)
-
-    def _print_income_basis_for_advance_tax(self):
-        print("Income basis for advance tax: ", round_to_two_trailing_zeroes(self._income_basis_for_advance_tax),
-              " rounded: " + round_to_whole_number(self._income_basis_for_advance_tax_rounded))
-
-    def _print_advance_tax_basis(self):
-        print("Advance tax 18% = ", round_to_two_trailing_zeroes(self._advance_tax_basis))
-
-    def _print_tax_free_income(self):
-        print("Tax free income =", self._tax_free_income)
-
-    def _print_advance_tax_without_free_income(self):
-        print("Advance tax without free income = " +
-              round_to_two_trailing_zeroes(self._advance_tax_without_free_income))
-
-    def _print_advance_tax(self):
-        print("Advance tax actually paid = " + round_to_two_trailing_zeroes(self._advance_tax) + " rounded " +
-              round_to_whole_number(self._advance_tax_rounded))
-
-    def _print_net_income(self):
-        print()
-        print("Net income = " + round_to_two_trailing_zeroes(self._net_income))

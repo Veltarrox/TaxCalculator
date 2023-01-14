@@ -1,5 +1,0 @@
-from TaxCalculators.EmploymentTaxCalculator.EmploymentTaxCalculator import EmploymentTaxCalculator
-from TaxCalculators.CivilTaxCalculator.CivilTaxCalculator import CivilTaxCalculator
-from TaxCalculators.NonExistingTaxCalculator.NonExistingTaxCalculator import NonExistingTaxCalculator
-
-TAX_CALCULATORS = {c.__name__: c for c in {EmploymentTaxCalculator, CivilTaxCalculator, NonExistingTaxCalculator}}
