@@ -75,3 +75,57 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+TaxCalculators/CivilTaxCalculator/__pycache__/CivilTaxCalculator.cpython-39.pyc
+*.pyc
+*.ps1
+venv/bin/pip3
+*.10
+*.txt
+*.pth
+*.py
+.idea/vcs.xml
+TaxCalculators/__pycache__/TaxCalculators.cpython-38.pyc
+TaxCalculators/FormattingVersions/__pycache__/__init__.cpython-38.pyc
+TaxCalculators/FormattingVersions/__pycache__/FormattingVersions.cpython-38.pyc
+venv/bin/activate
+venv/bin/activate.csh
+venv/bin/activate.fish
+venv/bin/pip
+venv/bin/pip3.9
+venv/bin/python
+venv/bin/python3
+venv/bin/python3.9
+venv/lib/python3.9/site-packages/pip-22.3.1.dist-info/INSTALLER
+venv/lib/python3.9/site-packages/pip-22.3.1.dist-info/METADATA
+venv/lib/python3.9/site-packages/pip-22.3.1.dist-info/RECORD
+venv/lib/python3.9/site-packages/pip-22.3.1.dist-info/WHEEL
+venv/lib/python3.9/site-packages/pip/_vendor/certifi/cacert.pem
+venv/lib/python3.9/site-packages/pip/_vendor/distlib/t32.exe
+venv/lib/python3.9/site-packages/pip/_vendor/distlib/t64-arm.exe
+venv/lib/python3.9/site-packages/pip/_vendor/distlib/t64.exe
+venv/lib/python3.9/site-packages/pip/_vendor/distlib/w32.exe
+venv/lib/python3.9/site-packages/pip/_vendor/distlib/w64-arm.exe
+venv/lib/python3.9/site-packages/pip/_vendor/distlib/w64.exe
+venv/lib/python3.9/site-packages/pip/py.typed
+venv/lib/python3.9/site-packages/setuptools-65.7.0.dist-info/INSTALLER
+venv/lib/python3.9/site-packages/setuptools-65.7.0.dist-info/LICENSE
+venv/lib/python3.9/site-packages/setuptools-65.7.0.dist-info/METADATA
+venv/lib/python3.9/site-packages/setuptools-65.7.0.dist-info/RECORD
+venv/lib/python3.9/site-packages/setuptools-65.7.0.dist-info/WHEEL
+venv/lib/python3.9/site-packages/setuptools/cli-32.exe
+venv/lib/python3.9/site-packages/setuptools/cli-64.exe
+venv/lib/python3.9/site-packages/setuptools/cli-arm64.exe
+venv/lib/python3.9/site-packages/setuptools/cli.exe
+venv/lib/python3.9/site-packages/setuptools/command/launcher manifest.xml
+venv/lib/python3.9/site-packages/setuptools/gui-32.exe
+venv/lib/python3.9/site-packages/setuptools/gui-64.exe
+venv/lib/python3.9/site-packages/setuptools/gui-arm64.exe
+venv/lib/python3.9/site-packages/setuptools/gui.exe
+venv/lib/python3.9/site-packages/setuptools/script (dev).tmpl
+venv/lib/python3.9/site-packages/setuptools/script.tmpl
+venv/pyvenv.cfg
+TaxCalculators/FormattingVersions/__pycache__/FormattingVersions.cpython-38.pyc
+TaxCalculators/FormattingVersions/__pycache__/__init__.cpython-38.pyc
+TaxCalculators/__pycache__/TaxCalculators.cpython-38.pyc
+*.pyc
+TaxCalculators/FormattingVersions/__pycache__/__init__.cpython-38.pyc
