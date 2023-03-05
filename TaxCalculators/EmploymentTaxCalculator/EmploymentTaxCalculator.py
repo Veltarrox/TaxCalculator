@@ -3,5 +3,9 @@ from TaxCalculators.DefaultTaxCalculator.DefaultTaxCalculator import DefaultTaxC
 
 class EmploymentTaxCalculator(DefaultTaxCalculator):
 
-    def _print_contract_type(self):
-        print("EMPLOYMENT")
+    def __init__(self, base_income):
+        super().__init__(base_income)
+
+    @property
+    def contract_type(self) -> str:
+        return "EMPLOYMENT"
